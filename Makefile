@@ -381,7 +381,7 @@ clang38install:
 
 # Ubuntu 14.04 ships a too-old lz4
 lz4install:
-	[ -e lz4 ] || git clone https://github.com/lz4/lz4 && sudo $(MAKE) -C lz4 install
+	[ -e lz4 ] || git clone https://github.com/lz4/lz4 && $(MAKE) -C lz4 && sudo $(MAKE) -C lz4 install
 
 endif
 
