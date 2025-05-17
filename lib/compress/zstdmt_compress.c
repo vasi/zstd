@@ -1458,6 +1458,10 @@ static size_t ZSTDMT_createCompressionJob(ZSTDMT_CCtx* mtctx, size_t srcSize, ZS
                 mtctx->params.fParams.checksumFlag = 0;
         }   }
 
+        if (ZSTDMT_shouldStartNewFrame(&mtctx->jobs[jobID])) {
+            mtctx->jobs[jobID].prefix.size = 0; /* make the next block independent */
+        }
+
         if ( (srcSize == 0)
           && (mtctx->nextJobID>0)/*single job must also write frame header*/ ) {
             DEBUGLOG(5, "ZSTDMT_createCompressionJob: creating a last empty block to end frame");
