@@ -902,6 +902,12 @@ static void ZSTDMT_freeJobsTable(ZSTDMT_jobDescription* jobTable, U32 nbJobs, ZS
     ZSTD_customFree(jobTable, cMem);
 }
 
+static int ZSTDMT_shouldStartNewFrame(ZSTDMT_jobDescription *job)
+{
+    /* TODO: replace with something reasonable */
+    return job->jobID % 10 == 0;
+}
+
 /* ZSTDMT_allocJobsTable()
  * allocate and init a job table.
  * update *nbJobsPtr to next power of 2 value, as size of table */
